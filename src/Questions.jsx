@@ -2,6 +2,7 @@ import { shuffleArray } from "./utils";
 import { useEffect, useState } from "react";
 import Result from "./Result";
 import Question from "./Question";
+
 function Questions() {
   const [checkUserAnswer, setCheckUserAnswer] = useState(false);
 
@@ -101,7 +102,6 @@ function Questions() {
             answers: question.answers,
             correctAnswer: question.correctAnswer,
             userAnswer: userAnswers[index].answer,
-            // correct: userAnswers[index].correctAnswer === "correct" ? true : false,
           };
         });
       });
@@ -138,9 +138,13 @@ function Questions() {
     <>
       {checkUserAnswer === false ? (
         <div className="question">
-          <h2>Questions: </h2>
+          <h1 className="title">Questions: </h1>
           {questionElements}
-          <button onClick={() => verifiyUserAnswers()}>Check answers</button>
+          <div className="btn-container">
+            <button onClick={() => verifiyUserAnswers()} className="btn">
+              Check answers
+            </button>
+          </div>
         </div>
       ) : (
         <Result

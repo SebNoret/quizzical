@@ -1,9 +1,13 @@
 function Game({ startGame }) {
   return (
     <div className="game">
-      <h1>Quzzical</h1>
+      <h1 className="title">Quzzical</h1>
       <p>A questions game to test your Knwledge.</p>
-      <button onClick={() => startGame()}>Start</button>
+      <div className="btn-container">
+        <button onClick={() => startGame()} className="btn">
+          Start
+        </button>
+      </div>
     </div>
   );
 }

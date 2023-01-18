@@ -19,3 +19,10 @@ export function shuffleArray(array) {
   }
   return array;
 }
+
+// Convert HTML entities to characters
+export function decode(str) {
+  let txt = new DOMParser().parseFromString(str, "text/html");
+
+  return txt.documentElement.textContent;
+}

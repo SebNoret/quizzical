@@ -12,9 +12,35 @@
 }
 
 body {
+  padding: 1rem;
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+}
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+* .btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+/* utilities classes*/
+.selected,
+.good-answer {
+  background-color: aqua;
+}
+.wrong-answer {
+  background-color: red;
 }

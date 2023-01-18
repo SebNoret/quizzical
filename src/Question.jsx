@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-
+import { decode } from "./utils";
 function Question({
   question,
   correct_answer,
@@ -20,11 +20,8 @@ function Question({
 
   const radioElements = answers.map((option, index) => {
     return (
-      <div
-        key={index}
-        className={selectedOption === option ? "selected" : null}
-      >
-        <label>
+      <div key={index}>
+        <label className={selectedOption === option ? "selected" : null}>
           <input
             type="radio"
             name={groupeId}
@@ -32,7 +29,7 @@ function Question({
             onChange={handleOptionChange}
             data-answers={correct_answer === option ? "correct" : "incorrect"}
           />
-          {option}
+          {decode(option)}
           {correct_answer === option && (
             <span style={{ color: "red", fontWeight: "bold" }}> Correct</span>
           )}
@@ -42,7 +39,7 @@ function Question({
   });
   return (
     <div data-testid="Question">
-      <h3 data-testid="title">{question}</h3>
+      <h3 data-testid="title">{decode(question)}</h3>
       <div>
         {radioElements}
         {/* {selectedOption && <p>You selected {selectedOption}</p>} */}
