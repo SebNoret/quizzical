@@ -1,10 +1,11 @@
 import { decode } from "./utils";
+import "./question.css";
 
 function Result({ score, playAgain, scoreDetails }) {
   const detailAnswsersElements = scoreDetails.map((detail, index) => {
     return (
-      <div key={index}>
-        <h4>{decode(detail.question)}</h4>
+      <div key={index} className="question-container">
+        <h4 className="subtitle">{decode(detail.question)}</h4>
 
         {detail.answers.map((option, index) => {
           return (
@@ -12,11 +13,11 @@ function Result({ score, playAgain, scoreDetails }) {
               key={index}
               className={
                 option === detail.correctAnswer
-                  ? "good-answer"
+                  ? "radio-label good-answer"
                   : option === detail.userAnswer &&
                     option !== detail.correctAnswer
-                  ? "wrong-answer"
-                  : null
+                  ? "radio-label wrong-answer"
+                  : "radio-label"
               }
             >
               {decode(option)}

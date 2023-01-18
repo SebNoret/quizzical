@@ -78,8 +78,6 @@ function Questions() {
 
   function verifiyUserAnswers() {
     if (userAnswers.length === questionList.length) {
-      console.log("userAnswersIsComplete");
-
       setScore(
         userAnswers.reduce(
           (acc, userAnswer) => {
@@ -116,11 +114,14 @@ function Questions() {
     setQuestionList([]);
     apiCall();
   }
-  function playLater() {
-    setCheckUserAnswer(false);
-    setUserAnswers([]);
-    setQuestionList([]);
-  }
+  /**
+   * @todo add play later function
+   */
+  // function playLater() {
+  //   setCheckUserAnswer(false);
+  //   setUserAnswers([]);
+  //   setQuestionList([]);
+  // }
   const questionElements = questionList.map((question, index) => {
     return (
       <Question
@@ -133,7 +134,7 @@ function Questions() {
       />
     );
   });
-  console.log("score details", scoreDetails);
+
   return (
     <>
       {checkUserAnswer === false ? (
