@@ -1,9 +1,11 @@
-import { shuffleArray } from "./utils";
+import { shuffleArray } from "../../utils/utils";
+import { fetchQuestions } from "../../Api/fetchQuestions";
 import { useEffect, useState } from "react";
-import Result from "./Result";
-import Question from "./Question";
+import Result from "../Result/Result";
+import Question from "../Question/Question";
+import Loader from "../Loader/Loader";
 
-function Questions() {
+function QuestionsList() {
   const [checkUserAnswer, setCheckUserAnswer] = useState(false);
 
   const [apiData, setApiData] = useState([]);
@@ -13,25 +15,35 @@ function Questions() {
 
   const [score, setScore] = useState({});
   const [scoreDetails, setScoreDetails] = useState([]);
-  function apiCall() {
-    fetch("https://opentdb.com/api.php?amount=5")
-      .then((res) => res.json())
-      .then((data) => {
-        setApiData(data.results);
-      });
-  }
+
+  const [isLoading, setIsLoading] = useState(false);
+
+  // console.log("rendered");
+
   // fetch data from API
   useEffect(() => {
-    apiCall();
+    setIsLoading(true);
+    fetchQuestions().then((data) => {
+      createQuestionList(data.results);
+      getCorrectAnswers();
+      setIsLoading(false);
+      console.log("appel api depuit useEffect");
+    });
   }, []);
-  useEffect(() => {
-    getQuestionList(questionList);
-  }, [apiData]);
-  // crete correct answers list
-  useEffect(() => {
-    getCorrectAnswers(correctAnswers);
-  }, [questionList]);
 
+  function createQuestionList(apiData) {
+    const questions = apiData.map((question) => {
+      return {
+        question: question.question,
+        correctAnswer: question.correct_answer,
+        answers: shuffleArray([
+          ...question.incorrect_answers,
+          question.correct_answer,
+        ]),
+      };
+    });
+    setQuestionList(questions);
+  }
   // create questions list
   function getQuestionList() {
     const questions = apiData.map((question) => {
@@ -48,7 +60,7 @@ function Questions() {
   }
   function getCorrectAnswers() {
     const correctAnswers = questionList.map((question, index) => {
-      return { id: index, correctAnswoer: question.correctAnswer };
+      return { id: index, correctAnswer: question.correctAnswer };
     });
     setCorrectAnswers(correctAnswers);
   }
@@ -112,7 +124,14 @@ function Questions() {
     setCheckUserAnswer(false);
     setUserAnswers([]);
     setQuestionList([]);
-    apiCall();
+    setIsLoading(true);
+
+    fetchQuestions().then((data) => {
+      createQuestionList(data.results);
+      getCorrectAnswers();
+      setIsLoading(false);
+      console.log("appel api depuit playAgain");
+    });
   }
   /**
    * @todo add play later function
@@ -137,7 +156,9 @@ function Questions() {
 
   return (
     <>
-      {checkUserAnswer === false ? (
+      {isLoading === true ? (
+        <Loader />
+      ) : checkUserAnswer === false ? (
         <div className="question">
           <h1 className="title">Questions: </h1>
           {questionElements}
@@ -158,4 +179,4 @@ function Questions() {
   );
 }
 
-export default Questions;
+export default QuestionsList;

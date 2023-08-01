@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { decode } from "./utils";
+import { decode } from "../../utils/utils";
 import "./question.css";
 function Question({
   question,
@@ -36,9 +36,9 @@ function Question({
             className="radio-btn"
           />
           {decode(option)}
-          {correct_answer === option && (
+          {/* {correct_answer === option && (
             <span style={{ color: "red", fontWeight: "bold" }}> Correct</span>
-          )}
+          )} */}
         </label>
       </div>
     );
@@ -48,7 +48,7 @@ function Question({
       <h4 className="subtitle" data-testid="title">
         {decode(question)}
       </h4>
-      <div className="question-container">
+      <div className="answers-container">
         {radioElements}
         {/* {selectedOption && <p>You selected {selectedOption}</p>} */}
       </div>

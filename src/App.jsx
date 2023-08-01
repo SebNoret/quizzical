@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
-import Game from "./Game";
-import Questions from "./Questions";
+import { Game } from "./components/";
+import { QuestionsList } from "./components/";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -9,8 +9,8 @@ function App() {
     setIsPlaying(true);
   }
   return (
-    <div className="App">
-      {!isPlaying ? <Game startGame={startGame} /> : <Questions />}
+    <div className="app">
+      {!isPlaying ? <Game startGame={startGame} /> : <QuestionsList />}
     </div>
   );
 }

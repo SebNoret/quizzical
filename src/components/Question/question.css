@@ -1,0 +1,77 @@
+/*******style des boutons radio*********/
+.question,
+.result {
+  background: white;
+  margin: 3rem 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 0 1em rgba(41, 50, 100, 0.3);
+  border-radius: 15px;
+}
+.answers-container {
+  margin-bottom: 2rem;
+  border-bottom: 3px solid var(--btn-color);
+  padding-bottom: 2rem;
+}
+
+.radio-btn {
+  display: none;
+}
+.radio-label,
+.radio-label-result {
+  font-weight: bold;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.radio-label,
+.radio-label-result {
+  color: var(--btn-color);
+  border: 3px solid var(--btn-color);
+}
+
+.radio-label-result {
+  cursor: default;
+  border: 1px solid #4d5b9e;
+  background-color: ghostwhite;
+  color: #4d5b9e;
+}
+
+/* utilities classes*/
+.selected {
+  background-color: var(--selected-response-color);
+  border: none;
+}
+
+.good-answer,
+.wrong-answer {
+  border: none;
+  color: var(--btn-color);
+  cursor: default;
+}
+.good-answer {
+  background-color: var(--good-answer-color);
+}
+
+.wrong-answer {
+  background-color: var(--wrong-answer-color);
+}
+
+@media screen and (min-width: 768px) {
+  .answers-container {
+    margin-bottom: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .answer {
+    padding: 0 0.3rem;
+  }
+  .question,
+  .result {
+    width: 50%;
+    margin-right: 20px;
+  }
+}

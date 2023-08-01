@@ -1,14 +1,14 @@
 function Game({ startGame }) {
   return (
-    <>
-      <h1 className="title">Quzzical</h1>
-      <p className="paragraph">A questions game to test your Knwledge.</p>
+    <div className="app-presentation">
+      <h1 className="title">Quizzical</h1>
+      <p className="paragraph">Test your knowledge with this game!</p>
       <div className="btn-container">
         <button onClick={() => startGame()} className="btn">
           Start
         </button>
       </div>
-    </>
+    </div>
   );
 }
 
