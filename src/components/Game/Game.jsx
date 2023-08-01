@@ -1,11 +1,17 @@
-function Game({ startGame }) {
+import LocalStorageManager from "../../storage/localStorageManager";
+function Game({ startNewGame, continueGame }) {
   return (
     <div className="app-presentation">
       <h1 className="title">Quizzical</h1>
       <p className="paragraph">Test your knowledge with this game!</p>
       <div className="btn-container">
-        <button onClick={() => startGame()} className="btn">
-          Start
+        {LocalStorageManager.userScoreExists() ? (
+          <button onClick={() => continueGame()} className="btn">
+            Continue
+          </button>
+        ) : null}
+        <button onClick={() => startNewGame()} className="btn">
+          Start new game
         </button>
       </div>
     </div>

@@ -1,11 +1,12 @@
 import { shuffleArray } from "../../utils/utils";
 import { fetchQuestions } from "../../Api/fetchQuestions";
+import LocalStorageManager from "../../storage/localStorageManager";
 import { useEffect, useState } from "react";
 import Result from "../Result/Result";
 import Question from "../Question/Question";
 import Loader from "../Loader/Loader";
 
-function QuestionsList() {
+function QuestionsList(startNewGame) {
   const [checkUserAnswer, setCheckUserAnswer] = useState(false);
 
   const [apiData, setApiData] = useState([]);
@@ -18,6 +19,7 @@ function QuestionsList() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+
   // fetch data from API
   useEffect(() => {
     setIsLoading(true);
@@ -68,7 +70,7 @@ function QuestionsList() {
     setCorrectAnswers(correctAnswers);
   }
 
-  function pushAnwserToUserAnswers(id, answer, correctAnswer) {
+  function pushAnswerToUserAnswers(id, answer, correctAnswer) {
     setUserAnswers((prev) => {
       if (prev.length === 0) {
         return [{ id: id, answer: answer, correctAnswer: correctAnswer }];
@@ -93,19 +95,30 @@ function QuestionsList() {
 
   function verifiyUserAnswers() {
     if (userAnswers.length === questionList.length) {
-      setScore(
-        userAnswers.reduce(
-          (acc, userAnswer) => {
-            if (userAnswer.correctAnswer === "correct") {
-              acc.correct++;
-            } else {
-              acc.incorrect++;
-            }
-            return acc;
-          },
-          { correct: 0, incorrect: 0 }
-        )
+      const newScore = userAnswers.reduce(
+        (acc, userAnswer) => {
+          if (userAnswer.correctAnswer === "correct") {
+            acc.correct++;
+          } else {
+            acc.incorrect++;
+          }
+          return acc;
+        },
+        { correct: 0, incorrect: 0 }
       );
+      setScore(newScore);
+
+      if (LocalStorageManager.userScoreExists()) {
+        LocalStorageManager.updateUserScore(
+          questionList.length,
+          newScore.correct
+        );
+      } else {
+        LocalStorageManager.saveUserScore(
+          questionList.length,
+          newScore.correct
+        );
+      }
 
       setScoreDetails(() => {
         return questionList.map((question, index) => {
@@ -150,14 +163,7 @@ function QuestionsList() {
         setIsError(true);
       });
   }
-  /**
-   * @todo add play later function
-   */
-  // function playLater() {
-  //   setCheckUserAnswer(false);
-  //   setUserAnswers([]);
-  //   setQuestionList([]);
-  // }
+
   const questionElements = questionList.map((question, index) => {
     return (
       <Question
@@ -166,7 +172,7 @@ function QuestionsList() {
         correct_answer={question.correctAnswer}
         answers={question.answers}
         groupeId={index}
-        pushAnwserToResponseList={pushAnwserToUserAnswers}
+        pushAnwserToResponseList={pushAnswerToUserAnswers}
       />
     );
   });
@@ -202,6 +208,7 @@ function QuestionsList() {
           score={score}
           scoreDetails={scoreDetails}
           playAgain={playAgain}
+          startNewGame={startNewGame}
         />
       )}
     </>
