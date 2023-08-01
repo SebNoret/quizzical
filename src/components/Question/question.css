@@ -1,6 +1,5 @@
 /*******style des boutons radio*********/
-.question,
-.result {
+.question {
   background: white;
   margin: 3rem 1rem;
   padding: 1.5rem;
@@ -39,6 +38,12 @@
   background-color: ghostwhite;
   color: #4d5b9e;
 }
+.retry {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
 
 /* utilities classes*/
 .selected {
@@ -69,8 +74,7 @@
   .answer {
     padding: 0 0.3rem;
   }
-  .question,
-  .result {
+  .question {
     width: 50%;
     margin-right: 20px;
   }

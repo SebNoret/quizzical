@@ -17,18 +17,21 @@ function QuestionsList() {
   const [scoreDetails, setScoreDetails] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
-
-  // console.log("rendered");
-
+  const [isError, setIsError] = useState(false);
   // fetch data from API
   useEffect(() => {
     setIsLoading(true);
-    fetchQuestions().then((data) => {
-      createQuestionList(data.results);
-      getCorrectAnswers();
-      setIsLoading(false);
-      console.log("appel api depuit useEffect");
-    });
+    fetchQuestions()
+      .then((data) => {
+        createQuestionList(data.results);
+        getCorrectAnswers();
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoading(false);
+        setIsError(true);
+      });
   }, []);
 
   function createQuestionList(apiData) {
@@ -130,8 +133,22 @@ function QuestionsList() {
       createQuestionList(data.results);
       getCorrectAnswers();
       setIsLoading(false);
-      console.log("appel api depuit playAgain");
     });
+  }
+  function retry() {
+    setIsLoading(true);
+    setIsError(false);
+    fetchQuestions()
+      .then((data) => {
+        createQuestionList(data.results);
+        getCorrectAnswers();
+        setIsLoading(false);
+        setIsError(false);
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIsError(true);
+      });
   }
   /**
    * @todo add play later function
@@ -158,6 +175,18 @@ function QuestionsList() {
     <>
       {isLoading === true ? (
         <Loader />
+      ) : isError === true ? (
+        <div className="error">
+          <h1 className="title">Something went wrong</h1>
+          <p className="text">
+            Please check your internet connection and try again
+          </p>
+          <div className="retry">
+            <button onClick={() => retry()} className="btn">
+              Retry
+            </button>
+          </div>
+        </div>
       ) : checkUserAnswer === false ? (
         <div className="question">
           <h1 className="title">Questions: </h1>
