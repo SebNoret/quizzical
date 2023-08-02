@@ -1,12 +1,12 @@
 import { shuffleArray } from "../../utils/utils";
 import { fetchQuestions } from "../../Api/fetchQuestions";
-import LocalStorageManager from "../../storage/localStorageManager";
+import LocalStorageManager from "../../Api/LocalStorageManager";
 import { useEffect, useState } from "react";
 import Result from "../Result/Result";
 import Question from "../Question/Question";
 import Loader from "../Loader/Loader";
 
-function QuestionsList(startNewGame) {
+function QuestionsList({ startNewGame, playLater }) {
   const [checkUserAnswer, setCheckUserAnswer] = useState(false);
 
   const [apiData, setApiData] = useState([]);
@@ -209,6 +209,7 @@ function QuestionsList(startNewGame) {
           scoreDetails={scoreDetails}
           playAgain={playAgain}
           startNewGame={startNewGame}
+          playLater={playLater}
         />
       )}
     </>

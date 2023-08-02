@@ -1,4 +1,4 @@
-import LocalStorageManager from "../../storage/localStorageManager";
+import LocalStorageManager from "../../Api/LocalStorageManager";
 function Game({ startNewGame, continueGame }) {
   return (
     <div className="app-presentation">

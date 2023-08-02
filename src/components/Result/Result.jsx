@@ -2,7 +2,7 @@ import { decode } from "../../utils/utils";
 // import "../Question/question.css";
 import "./result.css";
 
-function Result({ score, playAgain, scoreDetails, startNewGame }) {
+function Result({ score, scoreDetails, playAgain, startNewGame, playLater }) {
   const detailAnswsersElements = scoreDetails.map((detail, index) => {
     const key = `${detail.id}-${detail.question}-${index}`;
     return (
@@ -45,7 +45,9 @@ function Result({ score, playAgain, scoreDetails, startNewGame }) {
         <button onClick={() => playAgain()} className="btn">
           Play again
         </button>
-        <button className="btn">Continue playing later</button>
+        <button className="btn" onClick={() => playLater()}>
+          Continue playing later
+        </button>
         <button className="btn" onClick={() => startNewGame()}>
           Start new game
         </button>
