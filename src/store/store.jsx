@@ -1,22 +1,23 @@
-import React, { useReducer, createContext } from "react";
 import LocalStorageManager from "../Api/LocalStorageManager";
-
-const game = {
+export const game = {
   isPlaying: false,
   playLatter: false,
-  beginNewGame: false,
 };
-
-const GameContext = createContext(null);
-const GameDispatchContext = createContext(null);
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "START_NEW_GAME":
+    case "START_GAME":
       LocalStorageManager.removeUserScore();
       return {
         ...state,
         isPlaying: true,
+      };
+    case "START_NEW_GAME":
+      LocalStorageManager.removeUserScore();
+      return {
+        ...state,
+        isPlaying: false,
+        playLatter: false,
       };
     case "CONTINUE_GAME":
       return {
@@ -35,17 +36,4 @@ const reducer = (state, action) => {
   }
 };
 
-console.log("game", game);
-const GameProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, game);
-
-  return (
-    <GameContext.Provider value={state}>
-      <GameDispatchContext.Provider value={dispatch}>
-        {children}
-      </GameDispatchContext.Provider>
-    </GameContext.Provider>
-  );
-};
-
-export { GameContext, GameDispatchContext, GameProvider };
+export default reducer;

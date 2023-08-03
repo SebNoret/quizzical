@@ -1,5 +1,5 @@
 import LocalStorageManager from "../../Api/LocalStorageManager";
-function Game({ startNewGame, continueGame }) {
+function Game({ startGame, continueGame }) {
   return (
     <div className="app-presentation">
       <h1 className="title">Quizzical</h1>
@@ -10,8 +10,8 @@ function Game({ startNewGame, continueGame }) {
             Continue
           </button>
         ) : null}
-        <button onClick={() => startNewGame()} className="btn">
-          Start new game
+        <button onClick={() => startGame()} className="btn">
+          New Game
         </button>
       </div>
     </div>
