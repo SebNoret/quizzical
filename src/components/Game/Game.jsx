@@ -1,9 +1,11 @@
 import LocalStorageManager from "../../Api/LocalStorageManager";
+import Statistics from "../statistics/Statistics";
 function Game({ startGame, continueGame }) {
   return (
     <div className="app-presentation">
       <h1 className="title">Quizzical</h1>
       <p className="paragraph">Test your knowledge with this game!</p>
+      {LocalStorageManager.userScoreExists() && <Statistics />}
       <div className="btn-container">
         {LocalStorageManager.userScoreExists() ? (
           <button onClick={() => continueGame()} className="btn">

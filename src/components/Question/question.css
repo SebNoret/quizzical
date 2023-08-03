@@ -25,6 +25,7 @@
   margin: 0.5rem 0;
   border-radius: 15px;
   cursor: pointer;
+  transition: all 0.3s ease-in;
 }
 .radio-label,
 .radio-label-result {
@@ -38,6 +39,11 @@
   background-color: ghostwhite;
   color: #4d5b9e;
 }
+.radio-label:hover,
+.radio-label:focus {
+  background-color: var(--btn-color);
+  color: white;
+}
 .retry {
   display: flex;
   justify-content: center;
@@ -46,9 +52,12 @@
 }
 
 /* utilities classes*/
-.selected {
+.selected,
+.selected:hover,
+.selected:focus {
   background-color: var(--selected-response-color);
-  border: none;
+  color: var(--btn-color);
+  border: 3px solid var(--selected-response-color);
 }
 
 .good-answer,
@@ -57,12 +66,18 @@
   color: var(--btn-color);
   cursor: default;
 }
-.good-answer {
+.good-answer,
+.good-answer:hover,
+.good-answer:focus {
   background-color: var(--good-answer-color);
+  color: var(--btn-color);
 }
 
-.wrong-answer {
+.wrong-answer,
+.wrong-answer:hover,
+.wrong-answer:focus {
   background-color: var(--wrong-answer-color);
+  color: var(--btn-color);
 }
 
 @media screen and (min-width: 768px) {
