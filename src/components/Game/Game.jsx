@@ -10,7 +10,7 @@ function Game({ startGame, continueGame }) {
       <div className="btn-container">
         {LocalStorageManager.userScoreExists() ? (
           <button onClick={() => continueGame()} className="btn">
-            Continue
+            Continue play
           </button>
         ) : null}
         <button onClick={() => startGame()} className="btn">

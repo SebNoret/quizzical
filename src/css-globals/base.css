@@ -17,6 +17,8 @@
   --selected-response-color: #d6dbf5;
   --good-answer-color: #94d7a2;
   --wrong-answer-color: #f8bcbc;
+
+  --border-radius: 0.25rem;
 }
 
 *,
@@ -31,6 +33,6 @@ body {
   margin: 0;
   color: var(--title-color);
   min-height: 100vh;
-  background-image: url("./assets/img/background.webp");
+  background-image: url("../assets/img/background.webp");
   background-size: cover;
 }

@@ -1,11 +1,26 @@
-@media screen and (min-width: 540px) {
+/* media queries de base*/
+
+/* @media screen and (min-width: 540px) {
+}
+@media screen and (min-width: 768px) {
+} */
+
+/* Pour les écrans de petite taille, tels que les smartphones en mode portrait */
+@media screen and (max-width: 576px) {
+  /* Ajoutez vos styles ici */
+}
+
+/* Pour les écrans de taille moyenne, tels que les smartphones en mode paysage et les tablettes en mode portrait */
+@media screen and (min-width: 576px) and (max-width: 768px) {
   .app-presentation {
     width: 50%;
   }
 }
-@media screen and (min-width: 768px) {
+
+/* Pour les écrans de taille moyenne à grande, tels que les tablettes en mode paysage et les ordinateurs portables */
+@media screen and (min-width: 768px) and (max-width: 992px) {
   .app-presentation {
-    width: 25%;
+    width: 450px;
   }
   .answers-container {
     margin-bottom: 3rem;
@@ -22,5 +37,56 @@
   .result {
     width: 50%;
     margin-right: 20px;
+  }
+  .statistics {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn {
+    width: 45%;
+  }
+}
+
+/* Pour les écrans de grande taille, tels que les ordinateurs de bureau */
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .app-presentation {
+    width: 550px;
+  }
+  .question {
+    width: 50%;
+    margin-right: 20px;
+  }
+  .statistics {
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn {
+    width: 45%;
+  }
+}
+
+/* Pour les écrans très larges, tels que les grands moniteurs ou les téléviseurs */
+@media screen and (min-width: 1200px) {
+  /* Ajoutez vos styles ici */
+  .app-presentation {
+    width: 600px;
+  }
+  .question {
+    width: 50%;
+    margin-right: 20px;
+  }
+  .statistics {
+    width: 55%;
+    margin-left: auto;
+    margin-right: auto;
+    /* background-color: red; */
+  }
+  .btn {
+    width: 45%;
+  }
+  .btn {
+    width: 45%;
   }
 }

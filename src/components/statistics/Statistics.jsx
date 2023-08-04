@@ -10,14 +10,20 @@ function Statistics() {
     totalAnswers = playerHistory.totalAnswers;
     correctAnswers = playerHistory.correctAnswers;
   }
+  const wrongAnswersPercentage = totalAnswers
+    ? Math.floor(((totalAnswers - correctAnswers) / totalAnswers) * 100)
+    : 0;
   return (
     <div className="statistics">
       <h2>Your Statistics :</h2>
       <div>
         {/* <p>Number of games played : {gamesPlayed} </p>: */}
-        <p>Number of questions answered : {totalAnswers} </p>
-        <p>Number of good answers: {correctAnswers} </p>
-        <p>Number of wrong answers : {totalAnswers - correctAnswers}</p>
+        <ul>
+          <li>Games played : {}</li>
+          <li>Questions answered : {totalAnswers} </li>
+          <li>Good answers: {correctAnswers} </li>
+          <li> Wrong answers percentage: {wrongAnswersPercentage} %</li>
+        </ul>
       </div>
     </div>
   );

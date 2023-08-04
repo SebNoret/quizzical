@@ -13,7 +13,6 @@ utililties classes
   font-size: 1.1rem;
   font-weight: 700;
   margin-bottom: 1rem;
-  /* text-align: center; */
 }
 .paragraph {
   font-size: 1rem;
@@ -24,6 +23,7 @@ utililties classes
 .btn-container {
   display: flex;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   /* align-items: center; */
 }
 
@@ -31,13 +31,16 @@ utililties classes
   background-color: var(--btn-color);
   padding: 0.5em 1.5em;
   color: var(--btn-font-color);
-  border-radius: 0.25rem;
-  /* width: 195px;
-  height: 55px; */
+  border-radius: var(--border-radius);
+
   font-size: 1.2rem;
   border: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+
+  /* test */
+  margin-bottom: 0.5rem;
+  width: 100%;
 }
 .answers-container {
   margin-bottom: 2rem;

@@ -38,19 +38,21 @@ function Result({ score, scoreDetails, playAgain, startNewGame, playLater }) {
     <div className="result">
       <h1 className="title">Results</h1>
       {detailAnswsersElements}
-      <div className="btn-container">
+      <div className="score-details">
         <h3>
           You scored {score.correct}/{scoreDetails.length} correct answers
         </h3>
-        <button onClick={() => playAgain()} className="btn">
-          Play again
-        </button>
-        <button className="btn" onClick={() => playLater()}>
-          Continue playing later
-        </button>
-        <button className="btn" onClick={() => startNewGame()}>
-          Start new game
-        </button>
+        <div className="btn-container">
+          <button onClick={() => playAgain()} className="btn">
+            Play again
+          </button>
+          <button className="btn" onClick={() => playLater()}>
+            Continue playing later
+          </button>
+          <button className="btn" onClick={() => startNewGame()}>
+            Start new game
+          </button>
+        </div>
       </div>
     </div>
   );
