@@ -18,6 +18,7 @@ export default defineConfig({
       minify: true,
     }),
   ],
+
   /**
    * Change the base url to the local portfolio url if you want to test the app locally
    */

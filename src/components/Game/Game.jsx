@@ -1,5 +1,6 @@
 import LocalStorageManager from "../../Api/LocalStorageManager";
 import Statistics from "../statistics/Statistics";
+import "./game.css";
 function Game({ startGame, continueGame }) {
   return (
     <div className="app-presentation">

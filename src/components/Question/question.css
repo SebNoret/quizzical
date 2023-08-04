@@ -1,54 +1,21 @@
 /*******style des boutons radio*********/
-.question {
-  background: white;
-  margin: 3rem 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 0 1em rgba(41, 50, 100, 0.3);
-  border-radius: 15px;
-}
-.answers-container {
-  margin-bottom: 2rem;
-  border-bottom: 3px solid var(--btn-color);
-  padding-bottom: 2rem;
-}
 
 .radio-btn {
   display: none;
 }
-.radio-label,
-.radio-label-result {
-  font-weight: bold;
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem 0;
-  border-radius: 15px;
+
+.radio-label {
   cursor: pointer;
-  transition: all 0.3s ease-in;
-}
-.radio-label,
-.radio-label-result {
+
   color: var(--btn-color);
   border: 3px solid var(--btn-color);
-}
 
-.radio-label-result {
-  cursor: default;
-  border: 1px solid #4d5b9e;
-  background-color: ghostwhite;
-  color: #4d5b9e;
+  transition: all 0.2s ease-in;
 }
 .radio-label:hover,
 .radio-label:focus {
   background-color: var(--btn-color);
   color: white;
-}
-.retry {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
 }
 
 /* utilities classes*/
@@ -58,39 +25,4 @@
   background-color: var(--selected-response-color);
   color: var(--btn-color);
   border: 3px solid var(--selected-response-color);
-}
-
-.good-answer,
-.wrong-answer {
-  border: none;
-  color: var(--btn-color);
-  cursor: default;
-}
-.good-answer,
-.good-answer:hover,
-.good-answer:focus {
-  background-color: var(--good-answer-color);
-  color: var(--btn-color);
-}
-
-.wrong-answer,
-.wrong-answer:hover,
-.wrong-answer:focus {
-  background-color: var(--wrong-answer-color);
-  color: var(--btn-color);
-}
-
-@media screen and (min-width: 768px) {
-  .answers-container {
-    margin-bottom: 3rem;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .answer {
-    padding: 0 0.3rem;
-  }
-  .question {
-    width: 50%;
-    margin-right: 20px;
-  }
 }

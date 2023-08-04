@@ -188,11 +188,9 @@ function QuestionsList({ startNewGame, playLater }) {
       {isLoading === true ? (
         <Loader />
       ) : isError === true ? (
-        <div className="error">
+        <div>
           <h1 className="title">Something went wrong</h1>
-          <p className="text">
-            Please check your internet connection and try again
-          </p>
+          <p>Please check your internet connection and try again</p>
           <div className="retry">
             <button onClick={() => retry()} className="btn">
               Retry

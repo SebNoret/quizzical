@@ -1,0 +1,69 @@
+\*** App component css classes ***
+
+.app              -> app.css
+
+*** Game component css classes : ****
+
+.app-presentation         -> game.css
+
+.title           -> css-globals/utilities.css 
+.paragraph           -> css-globals/utilities.css 
+.btn-container          -> css-globals/utilities.css
+.btn            -> css-globals/utilities.css
+
+*** QuestionsList component css classes: ****
+
+.error-message   -> questionList.css
+.retry   -> questionList.css
+.question  -> questionList.css
+
+.title  -> css-globals/utilities.css
+.btn   -> css-globals/utilities.css
+.title    -> css-globals/utilities.css
+.btn-container  -> css-globals/utilities.css
+.btn   -> css-globals/utilities.css
+
+
+*** Question component css classes : ****
+
+.radio-label  -> question.css
+.radio-label / default style -> css-globals/utilities.css
+
+.radio-btn   -> question.css  
+.selected  -> question.css
+
+.answer  -> css-globals/media-queries.css
+
+.subtitle   -> css-globals/utilities.css
+.answers-container  -> css-globals/utilities.css
+
+*** Results component css classes : ****
+
+.good-answer -> result.css
+.wrong-answer -> result.css
+.result -> result.css
+
+.radio-label-result -> result.css
+.radio-label-result -> css-globals/utilities.css
+
+.radio-label / default style -> css-globals/utilities.css
+
+.answer   -> css-globals/media-queries.css
+
+.subtitle   -> css-globals/utilities.css
+.answers-container   -> css-globals/utilities.css
+.title   -> css-globals/utilities.css
+.btn-container  -> css-globals/utilities.css
+.btn    -> css-globals/utilities.css
+
+*** Statistics component css classes : ****
+
+.statistics -> statistics.css
+
+*** Loader component css classes : ****
+
+.loader-container -> loader.css
+.loader -> loader.css
+
+
+

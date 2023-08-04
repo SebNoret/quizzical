@@ -1,0 +1,36 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --title-color: rgb(41, 50, 100);
+  --btn-color: #4d5b9e;
+  --btn-color-light: #899af6;
+  --btn-font-color: #f5f7fb;
+  --selected-response-color: #d6dbf5;
+  --good-answer-color: #94d7a2;
+  --wrong-answer-color: #f8bcbc;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  color: var(--title-color);
+  min-height: 100vh;
+  background-image: url("./assets/img/background.webp");
+  background-size: cover;
+}
