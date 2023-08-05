@@ -5,13 +5,18 @@ import LocalStorageManager from "../../Api/LocalStorageManager";
 function Statistics() {
   let totalAnswers;
   let correctAnswers;
+  let totalGamePlayed;
   if (LocalStorageManager.userScoreExists()) {
     const playerHistory = LocalStorageManager.getUserScore();
     totalAnswers = playerHistory.totalAnswers;
     correctAnswers = playerHistory.correctAnswers;
+    totalGamePlayed = playerHistory.totalGamePlayed;
   }
   const wrongAnswersPercentage = totalAnswers
     ? Math.floor(((totalAnswers - correctAnswers) / totalAnswers) * 100)
+    : 0;
+  const correctAnswersPercentage = totalAnswers
+    ? Math.floor((correctAnswers / totalAnswers) * 100)
     : 0;
   return (
     <div className="statistics">
@@ -19,10 +24,19 @@ function Statistics() {
       <div>
         {/* <p>Number of games played : {gamesPlayed} </p>: */}
         <ul>
-          <li>Games played : {}</li>
-          <li>Questions answered : {totalAnswers} </li>
-          <li>Good answers: {correctAnswers} </li>
-          <li> Wrong answers percentage: {wrongAnswersPercentage} %</li>
+          <li>
+            Games played : <span>{totalGamePlayed}</span>
+          </li>
+          <li>
+            Questions answered : <span>{totalAnswers}</span>
+          </li>
+          <li>
+            Good answers: <span>{correctAnswers}</span>
+          </li>
+          <li>
+            Percentage of good answers :{" "}
+            <span>{correctAnswersPercentage} %</span>
+          </li>
         </ul>
       </div>
     </div>

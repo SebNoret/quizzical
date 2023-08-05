@@ -11,14 +11,21 @@
 }
 
 /* Pour les écrans de taille moyenne, tels que les smartphones en mode paysage et les tablettes en mode portrait */
-@media screen and (min-width: 576px) and (max-width: 768px) {
+@media screen and (min-width: 500px) and (max-width: 768px) {
   .app-presentation {
     width: 50%;
+  }
+  .question {
+    width: 75%;
+    /* margin-right: 20px; */
   }
 }
 
 /* Pour les écrans de taille moyenne à grande, tels que les tablettes en mode paysage et les ordinateurs portables */
-@media screen and (min-width: 768px) and (max-width: 992px) {
+
+/* and (max-width: 992px) */
+
+@media screen and (min-width: 700px) {
   .app-presentation {
     width: 450px;
   }
@@ -31,8 +38,9 @@
     padding: 0 0.3rem;
   }
   .question {
-    width: 50%;
+    width: 60%;
     margin-right: 20px;
+    max-width: 700px;
   }
   .result {
     width: 50%;
@@ -49,7 +57,7 @@
 }
 
 /* Pour les écrans de grande taille, tels que les ordinateurs de bureau */
-@media screen and (min-width: 992px) and (max-width: 1200px) {
+/* @media screen and (min-width: 992px)  and (max-width: 1200px)  {
   .app-presentation {
     width: 550px;
   }
@@ -65,7 +73,7 @@
   .btn {
     width: 45%;
   }
-}
+} */
 
 /* Pour les écrans très larges, tels que les grands moniteurs ou les téléviseurs */
 @media screen and (min-width: 1200px) {

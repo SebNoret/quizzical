@@ -7,6 +7,7 @@ class LocalStorageManager {
     const score = {
       totalAnswers: totalAnswers,
       correctAnswers: correctAnswers,
+      totalGamePlayed: 1,
     };
     localStorage.setItem("userScore", JSON.stringify(score));
     return true;
@@ -28,6 +29,7 @@ class LocalStorageManager {
     console.log(score);
     score.totalAnswers = Number(score.totalAnswers) + totalAnswers;
     score.correctAnswers = (Number(score.correctAnswers) || 0) + correctAnswers;
+    score.totalGamePlayed = score.totalGamePlayed + 1;
     // localStorage.removeItem("userScore");
     localStorage.setItem("userScore", JSON.stringify(score));
   }

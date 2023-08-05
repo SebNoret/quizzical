@@ -10,8 +10,8 @@
   border-radius: 0.25rem;
   /* background-color: var(--btn-color-light); */
   /* background-color: red; */
-  border: 2px solid var(--title-color);
-  border-radius: var(--border-radius);
+  /* border: 2px solid var(--title-color);
+  border-radius: var(--border-radius); */
 }
 .statistics h2 {
   font-size: 2rem;
@@ -24,4 +24,9 @@
   /* background-color: red; */
   width: 80%;
   margin: 0 auto;
+}
+.statistics ul li span {
+  color: var(--btn-color);
+  font-weight: bold;
+  font-size: 1.1rem;
 }
