@@ -9,7 +9,9 @@ import Loader from "../Loader/Loader";
 import "./QuestionsList.css";
 
 function QuestionsList({ startNewGame, playLater }) {
-  const [checkUserAnswer, setCheckUserAnswer] = useState(false);
+  const [checkUserAnswer, setCheckUserAnswer] = useState(
+    LocalStorageManager.getHasPlayed() !== undefined ? true : false
+  );
 
   const [questionsFromApi, setQuestionsFromApi] = useState([]);
   const [questionList, setQuestionList] = useState([]);
@@ -17,7 +19,9 @@ function QuestionsList({ startNewGame, playLater }) {
   const [userAnswers, setUserAnswers] = useState([]);
 
   const [score, setScore] = useState({});
-  const [scoreDetails, setScoreDetails] = useState([]);
+  const [scoreDetails, setScoreDetails] = useState(
+    LocalStorageManager.getScoreDetails() || []
+  );
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -26,10 +30,14 @@ function QuestionsList({ startNewGame, playLater }) {
 
   // fetch data from API
   useEffect(() => {
+    if (LocalStorageManager.questionsListExists()) {
+      return;
+    }
     setIsLoading(true);
     fetchQuestions()
       .then((data) => {
         setQuestionsFromApi(data.results);
+
         setIsLoading(false);
       })
       .catch((error) => {
@@ -51,7 +59,13 @@ function QuestionsList({ startNewGame, playLater }) {
         ]),
       };
     });
-    setQuestionList(questions);
+
+    if (LocalStorageManager.questionsListExists()) {
+      setQuestionList(LocalStorageManager.getQuestionsList());
+    } else {
+      setQuestionList(questions);
+      LocalStorageManager.saveQuestionsList(questions);
+    }
   }, [questionsFromApi]);
 
   // create list of correct answers
@@ -104,19 +118,19 @@ function QuestionsList({ startNewGame, playLater }) {
       setScore(newScore);
 
       if (LocalStorageManager.userScoreExists()) {
-        LocalStorageManager.updateUserScore(
+        LocalStorageManager.updateUserData(
           questionList.length,
           newScore.correct
         );
       } else {
-        LocalStorageManager.saveUserScore(
-          questionList.length,
-          newScore.correct
-        );
+        LocalStorageManager.saveUserData(questionList.length, newScore.correct);
       }
-
-      setScoreDetails(() => {
-        return questionList.map((question, index) => {
+      if (LocalStorageManager.getScoreDetails() !== undefined) {
+        setScoreDetails(LocalStorageManager.getScoreDetails());
+        console.log("correct answers", correctAnswers);
+        setCheckUserAnswer(true);
+      } else {
+        const scoreDetails = questionList.map((question, index) => {
           return {
             id: index,
             question: question.question,
@@ -125,15 +139,29 @@ function QuestionsList({ startNewGame, playLater }) {
             userAnswer: userAnswers[index].answer,
           };
         });
-      });
-
-      setCheckUserAnswer(true);
+        setScoreDetails(scoreDetails);
+        // setScoreDetails(() => {
+        //   return questionList.map((question, index) => {
+        //     return {
+        //       id: index,
+        //       question: question.question,
+        //       answers: question.answers,
+        //       correctAnswer: question.correctAnswer,
+        //       userAnswer: userAnswers[index].answer,
+        //     };
+        //   });
+        // });
+        LocalStorageManager.saveScoreDetails(scoreDetails);
+        LocalStorageManager.saveHasPlayed();
+        setCheckUserAnswer(true);
+      }
     } else {
       setIsMissingAnswer(true);
     }
   }
   // reset game and fetch new questions
   function playAgain() {
+    LocalStorageManager.removeQuestionsList();
     setCheckUserAnswer(false);
     setUserAnswers([]);
     setQuestionList([]);

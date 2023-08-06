@@ -6,8 +6,8 @@ function Statistics() {
   let totalAnswers;
   let correctAnswers;
   let totalGamePlayed;
-  if (LocalStorageManager.userScoreExists()) {
-    const playerHistory = LocalStorageManager.getUserScore();
+  if (LocalStorageManager.userDataExists()) {
+    const playerHistory = LocalStorageManager.getUserData();
     totalAnswers = playerHistory.totalAnswers;
     correctAnswers = playerHistory.correctAnswers;
     totalGamePlayed = playerHistory.totalGamePlayed;

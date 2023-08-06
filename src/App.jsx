@@ -3,9 +3,18 @@ import { useReducer } from "react";
 import reducer, { game } from "./store/store";
 import { Game } from "./components/";
 import { QuestionsList } from "./components/";
+import LocalStorageManager from "./Api/LocalStorageManager";
+
+function getAppStateFromLocalStorage() {
+  const appState = LocalStorageManager.getAppState();
+  return appState;
+}
 
 function App() {
-  const [gameState, dispatch] = useReducer(reducer, game);
+  const [gameState, dispatch] = useReducer(
+    reducer,
+    getAppStateFromLocalStorage() || game
+  );
   if (gameState === null) {
     return <div>Loading...</div>;
   }
