@@ -43,13 +43,13 @@ function Result({ score, scoreDetails, playAgain, startNewGame, playLater }) {
           You scored {score.correct}/{scoreDetails.length} correct answers
         </h3>
         <div className="btn-container">
-          <button onClick={() => playAgain()} className="btn">
+          <button onClick={() => playAgain()} className="btn btn-result">
             Play again
           </button>
-          <button className="btn" onClick={() => playLater()}>
-            Continue playing later
+          <button className="btn btn-result" onClick={() => playLater()}>
+            Play later
           </button>
-          <button className="btn" onClick={() => startNewGame()}>
+          <button className="btn btn-result" onClick={() => startNewGame()}>
             Start new game
           </button>
         </div>
