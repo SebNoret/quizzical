@@ -1,6 +1,6 @@
 /* Pour les écrans de taille moyenne, tels que les smartphones en mode paysage et les tablettes en mode portrait */
 @media screen and (min-width: 500px) and (max-width: 768px) {
-  .question {
+  .questions-list {
     width: 75%;
   }
 }
@@ -20,7 +20,7 @@
   .answer {
     padding: 0 0.3rem;
   }
-  .question,
+  .questions-list,
   .result {
     width: 70%;
 
@@ -46,7 +46,7 @@
 
 /* Pour les écrans très larges, tels que les grands moniteurs ou les téléviseurs */
 @media screen and (min-width: 1200px) {
-  .question {
+  .questions-list {
     width: 50%;
     margin-right: 20px;
   }

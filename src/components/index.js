@@ -1,6 +1,6 @@
 // components/index.js
-export { default as Game } from "./Game/Game";
+export { default as GameMenu } from "./GameMenu/GameMenu";
 export { default as Loader } from "./Loader/Loader";
 export { default as Question } from "./Question/Question";
-export { default as QuestionsList } from "./QuestionsList/QuestionsList";
-export { default as Result } from "./Result/Result";
+export { default as GameBoard } from "./GameBoard/GameBoard";
+export { default as Result } from "./GameResult/GameResult";

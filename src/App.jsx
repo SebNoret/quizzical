@@ -1,8 +1,7 @@
 import "./App.css";
 import { useReducer } from "react";
 import reducer, { game } from "./store/store";
-import { Game } from "./components/";
-import { QuestionsList } from "./components/";
+import { GameMenu, GameBoard } from "./components/";
 import LocalStorageManager from "./Api/LocalStorageManager";
 
 function getAppStateFromLocalStorage() {
@@ -35,9 +34,9 @@ function App() {
   return (
     <div className="app">
       {gameState.isPlaying && !gameState.playLater ? (
-        <QuestionsList startNewGame={startNewGame} playLater={playLater} />
+        <GameBoard startNewGame={startNewGame} playLater={playLater} />
       ) : (
-        <Game startGame={startGame} continueGame={continueGame} />
+        <GameMenu startGame={startGame} continueGame={continueGame} />
       )}
     </div>
   );

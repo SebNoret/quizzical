@@ -1,25 +1,7 @@
-.question {
+.questions-list {
   background: white;
   margin: 3rem 1rem;
   padding: 1.5rem;
   box-shadow: 0 0 1em rgba(41, 50, 100, 0.3);
   border-radius: 15px;
-}
-.error-message {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgb(171, 14, 14);
-  color: white;
-  text-align: center;
-  padding: 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
-.retry {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1rem;
 }

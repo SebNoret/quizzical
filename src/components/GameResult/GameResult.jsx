@@ -1,8 +1,14 @@
 import { decode } from "../../utils/utils";
 // import "../Question/question.css";
-import "./result.css";
+import "./gameResult.css";
 
-function Result({ score, scoreDetails, playAgain, startNewGame, playLater }) {
+function GameResult({
+  score,
+  scoreDetails,
+  playAgain,
+  startNewGame,
+  playLater,
+}) {
   const detailAnswsersElements = scoreDetails.map((detail, index) => {
     const key = `${detail.id}-${detail.question}-${index}`;
     return (
@@ -57,4 +63,4 @@ function Result({ score, scoreDetails, playAgain, startNewGame, playLater }) {
     </div>
   );
 }
-export default Result;
+export default GameResult;
