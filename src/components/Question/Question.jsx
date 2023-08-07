@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
+import { useState } from "react";
 import { decode } from "../../utils/utils";
 import "./question.css";
 function Question({
   question,
   correct_answer,
   answers,
-  pushAnwserToResponseList,
+  listAllUserAnswers,
   groupeId,
 }) {
-  const [selectedOption, setSelectedOption] = React.useState("");
+  const [selectedOption, setSelectedOption] = useState("");
 
   function handleOptionChange(event) {
     setSelectedOption(event.target.value);
-    pushAnwserToResponseList(
+    listAllUserAnswers(
       event.target.name,
       event.target.value,
       event.target.dataset.answers

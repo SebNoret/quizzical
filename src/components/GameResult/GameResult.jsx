@@ -1,5 +1,6 @@
+import LocalStorageManager from "../../Api/LocalStorageManager";
 import { decode } from "../../utils/utils";
-// import "../Question/question.css";
+
 import "./gameResult.css";
 
 function GameResult({
@@ -9,7 +10,13 @@ function GameResult({
   startNewGame,
   playLater,
 }) {
-  const detailAnswsersElements = scoreDetails.map((detail, index) => {
+  const listOfAnswers = LocalStorageManager.hasUserAnswsersSaved()
+    ? LocalStorageManager.getScoreDetails()
+    : scoreDetails;
+  const lastScore = LocalStorageManager.hasLastScoreSaved()
+    ? LocalStorageManager.getLastScore()
+    : score;
+  const detailAnswsersElements = listOfAnswers.map((detail, index) => {
     const key = `${detail.id}-${detail.question}-${index}`;
     return (
       <div key={key}>
@@ -20,7 +27,6 @@ function GameResult({
 
             return (
               <div className="answer" key={key}>
-                {/* {console.log("cle du composant", key)} */}
                 <div
                   className={
                     option === detail.correctAnswer
@@ -46,7 +52,7 @@ function GameResult({
       {detailAnswsersElements}
       <div className="score-details">
         <h3>
-          You scored {score.correct}/{scoreDetails.length} correct answers
+          You scored {lastScore.correct}/{listOfAnswers.length} correct answers
         </h3>
         <div className="btn-container">
           <button onClick={() => playAgain()} className="btn btn-result">

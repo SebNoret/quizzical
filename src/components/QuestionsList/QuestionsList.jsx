@@ -4,7 +4,7 @@ import "./questionsList.css";
 
 function QuestionsList({
   questionsList,
-  pushAnswerToUserAnswers,
+  listAllUserAnswers,
   verifiyUserAnswers,
 }) {
   // render question elements
@@ -16,7 +16,7 @@ function QuestionsList({
         correct_answer={question.correctAnswer}
         answers={question.answers}
         groupeId={index}
-        pushAnwserToResponseList={pushAnswerToUserAnswers}
+        listAllUserAnswers={listAllUserAnswers}
       />
     );
   });

@@ -12,7 +12,7 @@ import QuestionsList from "../QuestionsList/QuestionsList";
 
 function GameBoard({ startNewGame, playLater }) {
   const [checkUserAnswer, setCheckUserAnswer] = useState(
-    LocalStorageManager.getHasPlayed() !== undefined ? true : false
+    LocalStorageManager.hasUserAnswsersSaved()
   );
 
   const [dataFromApi, setDataFromApi] = useState([]);
@@ -21,14 +21,12 @@ function GameBoard({ startNewGame, playLater }) {
   const [userAnswers, setUserAnswers] = useState([]);
 
   const [score, setScore] = useState({});
-  const [scoreDetails, setScoreDetails] = useState(
-    LocalStorageManager.getScoreDetails() || []
-  );
+  const [scoreDetails, setScoreDetails] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
-  const [hasMissingAnswer, setIsMissingAnswer] = useState(false);
+  const [hasMissingAnswer, setHasMissingAnswer] = useState(null);
 
   // 1) fetch data from API
   useEffect(() => {
@@ -78,8 +76,18 @@ function GameBoard({ startNewGame, playLater }) {
     setCorrectAnswers(correctAnswers);
   }, [questionsList]);
 
+  useEffect(() => {
+    if (
+      userAnswers.length > 0 &&
+      questionsList.length > 0 &&
+      userAnswers.length === questionsList.length
+    ) {
+      LocalStorageManager.saveScoreDetails(scoreDetails);
+    }
+  }, [scoreDetails]);
+
   // add user answer to list of user answers
-  function pushAnswerToUserAnswers(id, answer, correctAnswer) {
+  function listAllUserAnswers(id, answer, correctAnswer) {
     setUserAnswers((prev) => {
       if (prev.length === 0) {
         return [{ id: id, answer: answer, correctAnswer: correctAnswer }];
@@ -105,7 +113,7 @@ function GameBoard({ startNewGame, playLater }) {
   // verify user answers and calculate score
   function verifiyUserAnswers() {
     if (userAnswers.length === questionsList.length) {
-      setIsMissingAnswer(false);
+      setHasMissingAnswer(false);
       const newScore = userAnswers.reduce(
         (acc, userAnswer) => {
           if (userAnswer.correctAnswer === "correct") {
@@ -118,24 +126,12 @@ function GameBoard({ startNewGame, playLater }) {
         { correct: 0, incorrect: 0 }
       );
       setScore(newScore);
+      // save stats to local storage
+      saveScoreToLocalStorage(newScore);
+      LocalStorageManager.saveLastScore(newScore);
 
-      if (LocalStorageManager.userScoreExists()) {
-        LocalStorageManager.updateUserData(
-          questionsList.length,
-          newScore.correct
-        );
-      } else {
-        LocalStorageManager.saveUserData(
-          questionsList.length,
-          newScore.correct
-        );
-      }
-      if (LocalStorageManager.getScoreDetails() !== undefined) {
-        setScoreDetails(LocalStorageManager.getScoreDetails());
-        console.log("correct answers", correctAnswers);
-        setCheckUserAnswer(true);
-      } else {
-        const scoreDetails = questionsList.map((question, index) => {
+      setScoreDetails(() => {
+        return questionsList.map((question, index) => {
           return {
             id: index,
             question: question.question,
@@ -144,29 +140,28 @@ function GameBoard({ startNewGame, playLater }) {
             userAnswer: userAnswers[index].answer,
           };
         });
-        setScoreDetails(scoreDetails);
-        // setScoreDetails(() => {
-        //   return questionList.map((question, index) => {
-        //     return {
-        //       id: index,
-        //       question: question.question,
-        //       answers: question.answers,
-        //       correctAnswer: question.correctAnswer,
-        //       userAnswer: userAnswers[index].answer,
-        //     };
-        //   });
-        // });
-        LocalStorageManager.saveScoreDetails(scoreDetails);
-        LocalStorageManager.saveHasPlayed();
-        setCheckUserAnswer(true);
-      }
+      });
+
+      setCheckUserAnswer(true);
     } else {
-      setIsMissingAnswer(true);
+      setHasMissingAnswer(true);
+    }
+  }
+
+  function saveScoreToLocalStorage(newScore) {
+    if (LocalStorageManager.userScoreExists()) {
+      LocalStorageManager.updateUserData(
+        questionsList.length,
+        newScore.correct
+      );
+    } else {
+      LocalStorageManager.saveUserData(questionsList.length, newScore.correct);
     }
   }
   // reset game and fetch new data
   function playAgain() {
     LocalStorageManager.removeQuestionsList();
+    LocalStorageManager.removeScoreDetails();
     setCheckUserAnswer(false);
     setUserAnswers([]);
     setQuestionsList([]);
@@ -205,7 +200,7 @@ function GameBoard({ startNewGame, playLater }) {
       ) : checkUserAnswer === false ? (
         <QuestionsList
           questionsList={questionsList}
-          pushAnswerToUserAnswers={pushAnswerToUserAnswers}
+          listAllUserAnswers={listAllUserAnswers}
           verifiyUserAnswers={verifiyUserAnswers}
         />
       ) : (
