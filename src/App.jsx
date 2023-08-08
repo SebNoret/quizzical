@@ -2,7 +2,7 @@ import "./App.css";
 import { useReducer } from "react";
 import reducer, { game } from "./store/store";
 import { GameMenu, GameBoard } from "./components/";
-import LocalStorageManager from "./Api/LocalStorageManager";
+import LocalStorageManager from "./Api/LocalStorageManager/LocalStorageManager";
 
 function getAppStateFromLocalStorage() {
   const appState = LocalStorageManager.getAppState();

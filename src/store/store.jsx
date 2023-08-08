@@ -1,4 +1,4 @@
-import LocalStorageManager from "../Api/LocalStorageManager";
+import LocalStorageManager from "../Api/LocalStorageManager/LocalStorageManager";
 
 // function getAppStateFromLocalStorage() {
 //   console.log("getAppStateFromLocalStorage");
@@ -17,7 +17,7 @@ const reducer = (state, action) => {
         ...state,
         isPlaying: true,
       };
-      LocalStorageManager.removeUserData();
+      LocalStorageManager.clearStorage();
       LocalStorageManager.saveAppState(newState);
       // LocalStorageManager.removeScoreDetails();
       // LocalStorageManager.removeHasPlayed();
@@ -28,7 +28,7 @@ const reducer = (state, action) => {
         isPlaying: false,
         playLatter: false,
       };
-      LocalStorageManager.removeUserData();
+      LocalStorageManager.clearStorage();
       LocalStorageManager.saveAppState(newState2);
       // LocalStorageManager.removeScoreDetails();
       // LocalStorageManager.removeHasPlayed();
@@ -42,7 +42,7 @@ const reducer = (state, action) => {
       LocalStorageManager.saveAppState(newState3);
       LocalStorageManager.removeQuestionsList();
       LocalStorageManager.removeScoreDetails();
-      LocalStorageManager.removeHasPlayed();
+      // LocalStorageManager.removeHasPlayed();
       return newState3;
     case "PLAY_LATTER":
       const newState4 = {
@@ -54,7 +54,7 @@ const reducer = (state, action) => {
       LocalStorageManager.saveAppState(newState4);
       LocalStorageManager.removeQuestionsList();
       LocalStorageManager.removeScoreDetails();
-      LocalStorageManager.removeHasPlayed();
+      // LocalStorageManager.removeHasPlayed();
       return newState4;
 
     default:

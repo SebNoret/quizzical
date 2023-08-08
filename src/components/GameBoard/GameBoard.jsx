@@ -2,7 +2,7 @@ import { shuffleArray } from "../../utils/utils";
 import { fetchData } from "../../Api/fetchData";
 import { useEffect, useState } from "react";
 
-import LocalStorageManager from "../../Api/LocalStorageManager";
+import LocalStorageManager from "../../Api/LocalStorageManager/LocalStorageManager";
 
 import GameResult from "../GameResult/GameResult";
 import Loader from "../Loader/Loader";
@@ -12,7 +12,7 @@ import QuestionsList from "../QuestionsList/QuestionsList";
 
 function GameBoard({ startNewGame, playLater }) {
   const [checkUserAnswer, setCheckUserAnswer] = useState(
-    LocalStorageManager.hasUserAnswsersSaved()
+    LocalStorageManager.scoreDetailsExists()
   );
 
   const [dataFromApi, setDataFromApi] = useState([]);

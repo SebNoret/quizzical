@@ -1,4 +1,4 @@
-import LocalStorageManager from "../../Api/LocalStorageManager";
+import LocalStorageManager from "../../Api/LocalStorageManager/LocalStorageManager";
 import Statistics from "../statistics/Statistics";
 import "./gameMenu.css";
 function Game({ startGame, continueGame }) {

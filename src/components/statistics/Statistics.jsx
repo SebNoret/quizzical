@@ -1,28 +1,25 @@
 import React from "react";
 import "./Statistics.css";
-import LocalStorageManager from "../../Api/LocalStorageManager";
+import LocalStorageManager from "../../Api/LocalStorageManager/LocalStorageManager";
 
 function Statistics() {
   let totalAnswers;
   let correctAnswers;
   let totalGamePlayed;
-  if (LocalStorageManager.userDataExists()) {
-    const playerHistory = LocalStorageManager.getUserData();
+  if (LocalStorageManager.getStorage()) {
+    const playerHistory = LocalStorageManager.getStorage();
     totalAnswers = playerHistory.totalAnswers;
     correctAnswers = playerHistory.correctAnswers;
     totalGamePlayed = playerHistory.totalGamePlayed;
   }
-  const wrongAnswersPercentage = totalAnswers
-    ? Math.floor(((totalAnswers - correctAnswers) / totalAnswers) * 100)
-    : 0;
+
   const correctAnswersPercentage = totalAnswers
     ? Math.floor((correctAnswers / totalAnswers) * 100)
     : 0;
   return (
     <div className="statistics">
       <h2>Your Statistics</h2>
-      {/* <div> */}
-      {/* <p>Number of games played : {gamesPlayed} </p>: */}
+
       <ul>
         <li>
           Games played : <span>{totalGamePlayed}</span>
@@ -37,7 +34,6 @@ function Statistics() {
           Percentage of good answers : <span>{correctAnswersPercentage} %</span>
         </li>
       </ul>
-      {/* </div> */}
     </div>
   );
 }

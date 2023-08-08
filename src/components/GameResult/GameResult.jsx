@@ -1,4 +1,4 @@
-import LocalStorageManager from "../../Api/LocalStorageManager";
+import LocalStorageManager from "../../Api/LocalStorageManager/LocalStorageManager";
 import { decode } from "../../utils/utils";
 
 import "./gameResult.css";
@@ -10,7 +10,7 @@ function GameResult({
   startNewGame,
   playLater,
 }) {
-  const listOfAnswers = LocalStorageManager.hasUserAnswsersSaved()
+  const listOfAnswers = LocalStorageManager.scoreDetailsExists()
     ? LocalStorageManager.getScoreDetails()
     : scoreDetails;
   const lastScore = LocalStorageManager.hasLastScoreSaved()
