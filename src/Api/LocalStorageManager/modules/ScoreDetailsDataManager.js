@@ -2,7 +2,7 @@ import { getData, setData, userDataExists } from "../utils";
 
 class ScoreDetailsDataManager {
   static getScoreDetails() {
-    if (userDataExists()) {
+    if (!userDataExists()) {
       return false;
     }
     const userData = getData();

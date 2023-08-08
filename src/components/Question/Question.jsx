@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { decode } from "../../utils/utils";
 import "./question.css";
 function Question({
@@ -7,8 +7,13 @@ function Question({
   answers,
   listAllUserAnswers,
   groupeId,
+  handleSelectedOptionsList,
 }) {
   const [selectedOption, setSelectedOption] = useState("");
+  //test
+  // useEffect(() => {
+
+  // }, [selectedOption]);
 
   function handleOptionChange(event) {
     setSelectedOption(event.target.value);
@@ -36,9 +41,6 @@ function Question({
             className="radio-btn"
           />
           {decode(option)}
-          {/* {correct_answer === option && (
-            <span style={{ color: "red", fontWeight: "bold" }}> Correct</span>
-          )} */}
         </label>
       </div>
     );
@@ -48,10 +50,7 @@ function Question({
       <h4 className="subtitle" data-testid="title">
         {decode(question)}
       </h4>
-      <div className="answers-container">
-        {radioElements}
-        {/* {selectedOption && <p>You selected {selectedOption}</p>} */}
-      </div>
+      <div className="answers-container">{radioElements}</div>
     </div>
   );
 }

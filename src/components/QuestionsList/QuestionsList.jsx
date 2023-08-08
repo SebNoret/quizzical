@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Question from "../Question/Question";
 
 import "./questionsList.css";
@@ -6,8 +7,22 @@ function QuestionsList({
   questionsList,
   listAllUserAnswers,
   verifiyUserAnswers,
+  cancel,
 }) {
   // render question elements
+
+  const [selectedOptionsList, setSelectedOptionsList] = useState([]);
+  ///test
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "selectedOptionsList",
+  //     JSON.stringify(selectedOptionsList)
+  //   );
+  // }, [selectedOptionsList]);
+
+  function handleSelectedOptionsList(option) {
+    setSelectedOptionsList([...selectedOptionsList, option]);
+  }
   const questionElements = questionsList.map((question, index) => {
     return (
       <Question
@@ -17,6 +32,7 @@ function QuestionsList({
         answers={question.answers}
         groupeId={index}
         listAllUserAnswers={listAllUserAnswers}
+        handleSelectedOptionsList={handleSelectedOptionsList}
       />
     );
   });
@@ -26,7 +42,9 @@ function QuestionsList({
       <h1 className="title">Questions: </h1>
       {questionElements}
       <div className="btn-container">
-        {}
+        <button className="btn" onClick={() => cancel()}>
+          Cancel game
+        </button>
         <button onClick={() => verifiyUserAnswers()} className="btn">
           Check answers
         </button>

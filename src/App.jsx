@@ -30,11 +30,18 @@ function App() {
   function playLater() {
     dispatch({ type: "PLAY_LATTER" });
   }
+  function cancel() {
+    dispatch({ type: "CANCEL" });
+  }
 
   return (
     <div className="app">
       {gameState.isPlaying && !gameState.playLater ? (
-        <GameBoard startNewGame={startNewGame} playLater={playLater} />
+        <GameBoard
+          startNewGame={startNewGame}
+          playLater={playLater}
+          cancel={cancel}
+        />
       ) : (
         <GameMenu startGame={startGame} continueGame={continueGame} />
       )}

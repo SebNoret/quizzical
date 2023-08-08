@@ -10,9 +10,11 @@ function GameResult({
   startNewGame,
   playLater,
 }) {
-  const listOfAnswers = LocalStorageManager.scoreDetailsExists()
-    ? LocalStorageManager.getScoreDetails()
-    : scoreDetails;
+  const listOfAnswers =
+    LocalStorageManager.scoreDetailsExists() &&
+    LocalStorageManager.getScoreDetails().length === 15
+      ? LocalStorageManager.getScoreDetails()
+      : scoreDetails;
   const lastScore = LocalStorageManager.hasLastScoreSaved()
     ? LocalStorageManager.getLastScore()
     : score;

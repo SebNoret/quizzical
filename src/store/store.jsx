@@ -56,6 +56,16 @@ const reducer = (state, action) => {
       LocalStorageManager.removeScoreDetails();
       // LocalStorageManager.removeHasPlayed();
       return newState4;
+    case "CANCEL":
+      const newState5 = {
+        ...state,
+        playLatter: false,
+        isPlaying: false,
+      };
+      LocalStorageManager.saveAppState(newState5);
+      LocalStorageManager.removeQuestionsList();
+      LocalStorageManager.removeScoreDetails();
+      return newState5;
 
     default:
       return state;

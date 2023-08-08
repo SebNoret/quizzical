@@ -10,7 +10,7 @@ import MissingAnswersErrorMessage from "../MissingAnswersErrorMessage/MissingAns
 import FetchApiErrorMessage from "../FetchApiErrorMessage/FetchApiErrorMessage";
 import QuestionsList from "../QuestionsList/QuestionsList";
 
-function GameBoard({ startNewGame, playLater }) {
+function GameBoard({ startNewGame, playLater, cancel }) {
   const [checkUserAnswer, setCheckUserAnswer] = useState(
     LocalStorageManager.scoreDetailsExists()
   );
@@ -31,6 +31,8 @@ function GameBoard({ startNewGame, playLater }) {
   // 1) fetch data from API
   useEffect(() => {
     if (LocalStorageManager.questionsListExists()) {
+      const storedQuestionsList = LocalStorageManager.getQuestionsList();
+      setQuestionsList(storedQuestionsList);
       return;
     }
     setIsLoading(true);
@@ -61,7 +63,9 @@ function GameBoard({ startNewGame, playLater }) {
     });
 
     if (LocalStorageManager.questionsListExists()) {
-      setQuestionsList(LocalStorageManager.getQuestionsList());
+      // setQuestionsList(LocalStorageManager.getQuestionsList());
+
+      return;
     } else {
       setQuestionsList(questionsList);
       LocalStorageManager.saveQuestionsList(questionsList);
@@ -147,7 +151,7 @@ function GameBoard({ startNewGame, playLater }) {
       setHasMissingAnswer(true);
     }
   }
-
+  //helper function to save score to local storage
   function saveScoreToLocalStorage(newScore) {
     if (LocalStorageManager.userScoreExists()) {
       LocalStorageManager.updateUserData(
@@ -202,6 +206,7 @@ function GameBoard({ startNewGame, playLater }) {
           questionsList={questionsList}
           listAllUserAnswers={listAllUserAnswers}
           verifiyUserAnswers={verifiyUserAnswers}
+          cancel={cancel}
         />
       ) : (
         <GameResult
