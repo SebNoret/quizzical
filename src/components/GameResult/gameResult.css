@@ -10,7 +10,9 @@
   border-radius: 15px;
 }
 
-.radio-label-result {
+.radio-label-result,
+.radio-label-result:hover,
+.radio-label-result:focus {
   cursor: default;
   border: 1px solid #4d5b9e;
   background-color: ghostwhite;

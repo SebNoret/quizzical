@@ -32,6 +32,7 @@ function QuestionsList({
         <button className="btn" onClick={() => cancel()}>
           Cancel game
         </button>
+
         <button onClick={() => verifiyUserAnswers()} className="btn">
           Check answers
         </button>

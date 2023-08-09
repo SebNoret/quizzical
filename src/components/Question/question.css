@@ -1,5 +1,9 @@
 /*******style des boutons radio*********/
-
+.answers-container {
+  /* background-color: rebeccapurple; */
+  /* border-radius: 10px; */
+  padding: 0.2rem;
+}
 .radio-btn {
   display: none;
 }

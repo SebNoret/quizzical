@@ -7,7 +7,6 @@ function Question({
   answers,
   listAllUserAnswers,
   groupeId,
-  hasMissingAnswer,
 }) {
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -43,17 +42,24 @@ function Question({
     );
   });
 
-  const missingAnswersWarningStyle =
-    !hasMissingAnswer && selectedOption === ""
-      ? { borderRight: "3px solid #4d5b9e" }
+  const selectedStyle =
+    selectedOption !== ""
+      ? {
+          borderRight: "2px solid #b8c4ff",
+
+          borderBottom: "2px solid #b8c4ff",
+          boxShadow: "0px 2px 2px 0 #b8c4ff",
+        }
       : {};
 
   return (
-    <div style={missingAnswersWarningStyle}>
+    <div>
       <h4 className="subtitle" data-testid="title">
         {decode(question)}
       </h4>
-      <div className="answers-container">{radioElements}</div>
+      <div className="answers-container" style={selectedStyle}>
+        {radioElements}
+      </div>
     </div>
   );
 }

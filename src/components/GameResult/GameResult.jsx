@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import LocalStorageManager from "../../Api/LocalStorageManager/LocalStorageManager";
 import { decode } from "../../utils/utils";
 
@@ -15,7 +16,7 @@ function GameResult({
     LocalStorageManager.getScoreDetails().length === 15
       ? LocalStorageManager.getScoreDetails()
       : scoreDetails;
-  // const listOfAnswers = scoreDetails;
+
   const lastScore = LocalStorageManager.hasLastScoreSaved()
     ? LocalStorageManager.getLastScore()
     : score;
@@ -32,12 +33,26 @@ function GameResult({
       return "radio-label-result";
     }
   };
+
+  useEffect(() => {
+    const wrongAnswersElements = document.querySelectorAll(".wrong-answer");
+    if (wrongAnswersElements) {
+      wrongAnswersElements.forEach((element) => {
+        const granParentElement = element.parentNode.parentNode.parentNode;
+        const parentElement = element.parentNode.parentNode;
+        granParentElement.style.color = "red";
+
+        parentElement.style.borderBottom = "3px solid red";
+      });
+    }
+  }, []);
+
   const detailAnswersElements = listOfAnswers.map((detail, index) => {
     const key = `${detail.id}-${detail.question}-${index}`;
     return (
-      <div key={key}>
+      <div key={key} className="right-answers">
         <h4 className="subtitle">{decode(detail.question)}</h4>
-        <div key={key} className="answers-container">
+        <div key={key} className="answers-container right-answers-container">
           {detail.answers.map((option, index) => {
             const key = `${detail.id}-${option}-${index}`;
             const answerClass = getAnswerClass(option, detail);
