@@ -15,10 +15,24 @@ function GameResult({
     LocalStorageManager.getScoreDetails().length === 15
       ? LocalStorageManager.getScoreDetails()
       : scoreDetails;
+  // const listOfAnswers = scoreDetails;
   const lastScore = LocalStorageManager.hasLastScoreSaved()
     ? LocalStorageManager.getLastScore()
     : score;
-  const detailAnswsersElements = listOfAnswers.map((detail, index) => {
+
+  const getAnswerClass = (option, detail) => {
+    if (option === detail.correctAnswer) {
+      return "good-answer";
+    } else if (
+      option === detail.userAnswer &&
+      option !== detail.correctAnswer
+    ) {
+      return "wrong-answer";
+    } else {
+      return "radio-label-result";
+    }
+  };
+  const detailAnswersElements = listOfAnswers.map((detail, index) => {
     const key = `${detail.id}-${detail.question}-${index}`;
     return (
       <div key={key}>
@@ -26,19 +40,10 @@ function GameResult({
         <div key={key} className="answers-container">
           {detail.answers.map((option, index) => {
             const key = `${detail.id}-${option}-${index}`;
-
+            const answerClass = getAnswerClass(option, detail);
             return (
               <div className="answer" key={key}>
-                <div
-                  className={
-                    option === detail.correctAnswer
-                      ? "radio-label good-answer"
-                      : option === detail.userAnswer &&
-                        option !== detail.correctAnswer
-                      ? "radio-label wrong-answer"
-                      : "radio-label-result"
-                  }
-                >
+                <div className={`radio-label ${answerClass}`}>
                   {decode(option)}
                 </div>
               </div>
@@ -51,7 +56,7 @@ function GameResult({
   return (
     <div className="result">
       <h1 className="title">Results</h1>
-      {detailAnswsersElements}
+      {detailAnswersElements}
       <div className="score-details">
         <h3>
           You scored {lastScore.correct}/{listOfAnswers.length} correct answers

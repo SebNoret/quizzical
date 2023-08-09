@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { decode } from "../../utils/utils";
 import "./question.css";
 function Question({
@@ -7,13 +7,9 @@ function Question({
   answers,
   listAllUserAnswers,
   groupeId,
-  handleSelectedOptionsList,
+  hasMissingAnswer,
 }) {
   const [selectedOption, setSelectedOption] = useState("");
-  //test
-  // useEffect(() => {
-
-  // }, [selectedOption]);
 
   function handleOptionChange(event) {
     setSelectedOption(event.target.value);
@@ -25,8 +21,9 @@ function Question({
   }
 
   const radioElements = answers.map((option, index) => {
+    const key = `${option}-${index}`;
     return (
-      <div key={index} className="answer">
+      <div key={key} className="answer">
         <label
           className={
             selectedOption === option ? "radio-label selected" : "radio-label"
@@ -45,8 +42,14 @@ function Question({
       </div>
     );
   });
+
+  const missingAnswersWarningStyle =
+    !hasMissingAnswer && selectedOption === ""
+      ? { borderRight: "3px solid #4d5b9e" }
+      : {};
+
   return (
-    <div>
+    <div style={missingAnswersWarningStyle}>
       <h4 className="subtitle" data-testid="title">
         {decode(question)}
       </h4>

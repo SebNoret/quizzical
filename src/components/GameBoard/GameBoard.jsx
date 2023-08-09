@@ -17,15 +17,11 @@ function GameBoard({ startNewGame, playLater, cancel }) {
 
   const [dataFromApi, setDataFromApi] = useState([]);
   const [questionsList, setQuestionsList] = useState([]);
-  const [correctAnswers, setCorrectAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
-
   const [score, setScore] = useState({});
   const [scoreDetails, setScoreDetails] = useState([]);
-
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-
   const [hasMissingAnswer, setHasMissingAnswer] = useState(null);
 
   // 1) fetch data from API
@@ -63,8 +59,6 @@ function GameBoard({ startNewGame, playLater, cancel }) {
     });
 
     if (LocalStorageManager.questionsListExists()) {
-      // setQuestionsList(LocalStorageManager.getQuestionsList());
-
       return;
     } else {
       setQuestionsList(questionsList);
@@ -72,13 +66,11 @@ function GameBoard({ startNewGame, playLater, cancel }) {
     }
   }, [dataFromApi]);
 
-  // 3) create the list of correct answers
   useEffect(() => {
-    const correctAnswers = questionsList.map((question, index) => {
-      return { id: index, correctAnswer: question.correctAnswer };
-    });
-    setCorrectAnswers(correctAnswers);
-  }, [questionsList]);
+    if (userAnswers.length === questionsList.length) {
+      setHasMissingAnswer(false);
+    }
+  }, [userAnswers]);
 
   useEffect(() => {
     if (
@@ -112,6 +104,11 @@ function GameBoard({ startNewGame, playLater, cancel }) {
         }
       }
     });
+
+    // sort user answers by id accending for use in setScoreDetails
+    setUserAnswers((prev) => {
+      return prev.sort((a, b) => a.id - b.id);
+    });
   }
 
   // verify user answers and calculate score
@@ -136,6 +133,8 @@ function GameBoard({ startNewGame, playLater, cancel }) {
 
       setScoreDetails(() => {
         return questionsList.map((question, index) => {
+          console.log("question", question);
+          console.log("user answer", userAnswers[index]);
           return {
             id: index,
             question: question.question,
@@ -193,32 +192,38 @@ function GameBoard({ startNewGame, playLater, cancel }) {
       });
   }
 
-  return (
-    <>
-      {hasMissingAnswer && <MissingAnswersErrorMessage />}
+  let gameComponent;
 
-      {isLoading === true ? (
-        <Loader />
-      ) : isError === true ? (
-        <FetchApiErrorMessage retry={retry} />
-      ) : checkUserAnswer === false ? (
+  if (isLoading === true) {
+    gameComponent = <Loader />;
+  } else if (isError === true) {
+    gameComponent = <FetchApiErrorMessage retry={retry} />;
+  } else if (checkUserAnswer === false) {
+    gameComponent = (
+      <>
+        {hasMissingAnswer && <MissingAnswersErrorMessage />}
         <QuestionsList
           questionsList={questionsList}
           listAllUserAnswers={listAllUserAnswers}
           verifiyUserAnswers={verifiyUserAnswers}
           cancel={cancel}
+          hasMissingAnswer={hasMissingAnswer}
         />
-      ) : (
-        <GameResult
-          score={score}
-          scoreDetails={scoreDetails}
-          playAgain={playAgain}
-          startNewGame={startNewGame}
-          playLater={playLater}
-        />
-      )}
-    </>
-  );
+      </>
+    );
+  } else {
+    gameComponent = (
+      <GameResult
+        score={score}
+        scoreDetails={scoreDetails}
+        playAgain={playAgain}
+        startNewGame={startNewGame}
+        playLater={playLater}
+      />
+    );
+  }
+
+  return <>{gameComponent}</>;
 }
 
 export default GameBoard;

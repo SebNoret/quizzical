@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import Question from "../Question/Question";
 
 import "./questionsList.css";
@@ -8,31 +7,19 @@ function QuestionsList({
   listAllUserAnswers,
   verifiyUserAnswers,
   cancel,
+  hasMissingAnswer,
 }) {
-  // render question elements
-
-  const [selectedOptionsList, setSelectedOptionsList] = useState([]);
-  ///test
-  // useEffect(() => {
-  //   localStorage.setItem(
-  //     "selectedOptionsList",
-  //     JSON.stringify(selectedOptionsList)
-  //   );
-  // }, [selectedOptionsList]);
-
-  function handleSelectedOptionsList(option) {
-    setSelectedOptionsList([...selectedOptionsList, option]);
-  }
   const questionElements = questionsList.map((question, index) => {
+    const key = `${question.question} - ${index}`;
     return (
       <Question
-        key={index}
+        key={key}
         question={question.question}
         correct_answer={question.correctAnswer}
         answers={question.answers}
         groupeId={index}
         listAllUserAnswers={listAllUserAnswers}
-        handleSelectedOptionsList={handleSelectedOptionsList}
+        hasMissingAnswers={hasMissingAnswer}
       />
     );
   });

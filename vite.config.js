@@ -5,11 +5,10 @@ import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 import { createHtmlPlugin } from "vite-plugin-html";
 
-const local = "http://localhost:1313/quizz/demo/";
-
 const test = "http://localhost:80/dist/";
 const dev = "http://localhost:5173/";
 const prod = "https://sebnoret.github.io/portfolio/quizz/demo/";
+const localProd = "http://localhost:1313/quizz/demo/";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,7 +25,7 @@ export default defineConfig({
     }),
   ],
 
-  base: test,
+  base: dev,
   build: {
     minify: "esbuild",
   },

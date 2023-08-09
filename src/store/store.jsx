@@ -7,7 +7,7 @@ import LocalStorageManager from "../Api/LocalStorageManager/LocalStorageManager"
 // }
 export const game = {
   isPlaying: false,
-  playLatter: false,
+  // playLatter: false,
 };
 
 const reducer = (state, action) => {
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
       const newState2 = {
         ...state,
         isPlaying: false,
-        playLatter: false,
+        // playLatter: false,
       };
       LocalStorageManager.clearStorage();
       LocalStorageManager.saveAppState(newState2);
@@ -47,7 +47,7 @@ const reducer = (state, action) => {
     case "PLAY_LATTER":
       const newState4 = {
         ...state,
-        playLatter: true,
+        // playLatter: true,
         isPlaying: false,
       };
 
@@ -59,7 +59,7 @@ const reducer = (state, action) => {
     case "CANCEL":
       const newState5 = {
         ...state,
-        playLatter: false,
+        // playLatter: false,
         isPlaying: false,
       };
       LocalStorageManager.saveAppState(newState5);
