@@ -3,7 +3,7 @@ class AppStateDataManager {
   static saveAppState(appState) {
     const userData = getData();
     if (!userData) {
-      setData(undefined, appState);
+      setData(appState, undefined);
 
       return true;
     } else {
@@ -13,7 +13,7 @@ class AppStateDataManager {
         playLatter: appState.playLatter,
       };
 
-      setData(undefined, newUserData);
+      setData(newUserData, undefined);
       return true;
     }
   }

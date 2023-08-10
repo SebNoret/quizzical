@@ -12,17 +12,14 @@ class LastScoreDataManager {
       ...userData,
       lastScore: { correct: lastScore.correct, incorrect: lastScore.incorrect },
     };
-    setData(undefined, newUserData);
+    setData(newUserData, undefined);
     return true;
   }
 
   static hasLastScoreSaved() {
     const userData = getData();
     if (!userData) return false;
-    if (userData.hasOwnProperty("lastScore")) {
-      return true;
-    }
-    return false;
+    return userData.hasOwnProperty("lastScore");
   }
 }
 

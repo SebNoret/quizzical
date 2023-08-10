@@ -1,11 +1,8 @@
-/* Pour les écrans de taille moyenne, tels que les smartphones en mode paysage et les tablettes en mode portrait */
 @media screen and (min-width: 500px) and (max-width: 768px) {
   .questions-list {
     width: 75%;
   }
 }
-
-/* Pour les écrans de taille moyenne à grande, tels que les tablettes en mode paysage et les ordinateurs portables */
 
 @media screen and (min-width: 700px) {
   .app-presentation {
@@ -44,7 +41,6 @@
   }
 }
 
-/* Pour les écrans très larges, tels que les grands moniteurs ou les téléviseurs */
 @media screen and (min-width: 1200px) {
   .questions-list {
     width: 50%;

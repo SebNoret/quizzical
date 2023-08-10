@@ -12,10 +12,7 @@ class ScoreDetailsDataManager {
   static isScoreDetailsSaved() {
     const userData = getData();
     if (!userData) return false;
-    if (userData.hasOwnProperty("scoreDetails")) {
-      return true;
-    }
-    return false;
+    return userData.hasOwnProperty("scoreDetails");
   }
 
   static saveScoreDetails(scoreDetails) {
@@ -24,14 +21,14 @@ class ScoreDetailsDataManager {
       ...userData,
       scoreDetails: scoreDetails,
     };
-    setData(undefined, newUserData);
+    setData(newUserData, undefined);
     return true;
   }
 
   static removeScoreDetails() {
     const userData = getData();
     delete userData.scoreDetails;
-    setData(undefined, userData);
+    setData(userData, undefined);
     return true;
   }
 }

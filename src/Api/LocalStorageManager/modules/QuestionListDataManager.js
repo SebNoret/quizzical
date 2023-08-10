@@ -14,7 +14,7 @@ class QuestionListDataManager {
       ...userData,
       questionsList: [],
     };
-    setData("userData", newUserData);
+    setData(newUserData, undefined);
     return true;
   }
 
@@ -24,20 +24,16 @@ class QuestionListDataManager {
       ...userData,
       questionsList: questionsList,
     };
-    setData("userData", newUserData);
+    setData(newUserData, undefined);
     return true;
   }
 
   static questionsListExists() {
     const userData = getData();
-    if (
+    return !(
       !userData.hasOwnProperty("questionsList") ||
       userData.questionsList.length === 0
-    ) {
-      return false;
-    } else {
-      return true;
-    }
+    );
   }
 }
 

@@ -133,8 +133,6 @@ function GameBoard({ startNewGame, playLater, cancel }) {
 
       setScoreDetails(() => {
         return questionsList.map((question, index) => {
-          console.log("question", question);
-          console.log("user answer", userAnswers[index]);
           return {
             id: index,
             question: question.question,

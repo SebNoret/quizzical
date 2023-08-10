@@ -1,0 +1,30 @@
+// vite.config.js
+import { defineConfig } from "file:///C:/Users/eugenie%20noret/Documents/dev-projects/quizzical-v2/node_modules/vite/dist/node/index.js";
+import react from "file:///C:/Users/eugenie%20noret/Documents/dev-projects/quizzical-v2/node_modules/@vitejs/plugin-react/dist/index.mjs";
+import legacy from "file:///C:/Users/eugenie%20noret/Documents/dev-projects/quizzical-v2/node_modules/@vitejs/plugin-legacy/dist/index.mjs";
+import postcss from "file:///C:/Users/eugenie%20noret/Documents/dev-projects/quizzical-v2/node_modules/postcss/lib/postcss.mjs";
+import autoprefixer from "file:///C:/Users/eugenie%20noret/Documents/dev-projects/quizzical-v2/node_modules/autoprefixer/lib/autoprefixer.js";
+import { createHtmlPlugin } from "file:///C:/Users/eugenie%20noret/Documents/dev-projects/quizzical-v2/node_modules/vite-plugin-html/dist/index.mjs";
+var localProd = "http://localhost:1313/quizz/demo/";
+var vite_config_default = defineConfig({
+  plugins: [
+    postcss({
+      plugins: [autoprefixer()]
+    }),
+    react(),
+    legacy({
+      targets: ["defaults", "not IE 11"]
+    }),
+    createHtmlPlugin({
+      minify: true
+    })
+  ],
+  base: localProd,
+  build: {
+    minify: "esbuild"
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcuanMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCJDOlxcXFxVc2Vyc1xcXFxldWdlbmllIG5vcmV0XFxcXERvY3VtZW50c1xcXFxkZXYtcHJvamVjdHNcXFxccXVpenppY2FsLXYyXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ZpbGVuYW1lID0gXCJDOlxcXFxVc2Vyc1xcXFxldWdlbmllIG5vcmV0XFxcXERvY3VtZW50c1xcXFxkZXYtcHJvamVjdHNcXFxccXVpenppY2FsLXYyXFxcXHZpdGUuY29uZmlnLmpzXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ltcG9ydF9tZXRhX3VybCA9IFwiZmlsZTovLy9DOi9Vc2Vycy9ldWdlbmllJTIwbm9yZXQvRG9jdW1lbnRzL2Rldi1wcm9qZWN0cy9xdWl6emljYWwtdjIvdml0ZS5jb25maWcuanNcIjtpbXBvcnQgeyBkZWZpbmVDb25maWcgfSBmcm9tIFwidml0ZVwiO1xuaW1wb3J0IHJlYWN0IGZyb20gXCJAdml0ZWpzL3BsdWdpbi1yZWFjdFwiO1xuaW1wb3J0IGxlZ2FjeSBmcm9tIFwiQHZpdGVqcy9wbHVnaW4tbGVnYWN5XCI7XG5pbXBvcnQgcG9zdGNzcyBmcm9tIFwicG9zdGNzc1wiO1xuaW1wb3J0IGF1dG9wcmVmaXhlciBmcm9tIFwiYXV0b3ByZWZpeGVyXCI7XG5pbXBvcnQgeyBjcmVhdGVIdG1sUGx1Z2luIH0gZnJvbSBcInZpdGUtcGx1Z2luLWh0bWxcIjtcblxuY29uc3QgdGVzdCA9IFwiaHR0cDovL2xvY2FsaG9zdDo4MC9kaXN0L1wiO1xuY29uc3QgZGV2ID0gXCJodHRwOi8vbG9jYWxob3N0OjUxNzMvXCI7XG5jb25zdCBwcm9kID0gXCJodHRwczovL3NlYm5vcmV0LmdpdGh1Yi5pby9wb3J0Zm9saW8vcXVpenovZGVtby9cIjtcbmNvbnN0IGxvY2FsUHJvZCA9IFwiaHR0cDovL2xvY2FsaG9zdDoxMzEzL3F1aXp6L2RlbW8vXCI7XG5cbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XG4gIHBsdWdpbnM6IFtcbiAgICBwb3N0Y3NzKHtcbiAgICAgIHBsdWdpbnM6IFthdXRvcHJlZml4ZXIoKV0sXG4gICAgfSksXG4gICAgcmVhY3QoKSxcbiAgICBsZWdhY3koe1xuICAgICAgdGFyZ2V0czogW1wiZGVmYXVsdHNcIiwgXCJub3QgSUUgMTFcIl0sXG4gICAgfSksXG4gICAgY3JlYXRlSHRtbFBsdWdpbih7XG4gICAgICBtaW5pZnk6IHRydWUsXG4gICAgfSksXG4gIF0sXG5cbiAgYmFzZTogbG9jYWxQcm9kLFxuICBidWlsZDoge1xuICAgIG1pbmlmeTogXCJlc2J1aWxkXCIsXG4gIH0sXG59KTtcbiJdLAogICJtYXBwaW5ncyI6ICI7QUFBOFcsU0FBUyxvQkFBb0I7QUFDM1ksT0FBTyxXQUFXO0FBQ2xCLE9BQU8sWUFBWTtBQUNuQixPQUFPLGFBQWE7QUFDcEIsT0FBTyxrQkFBa0I7QUFDekIsU0FBUyx3QkFBd0I7QUFLakMsSUFBTSxZQUFZO0FBRWxCLElBQU8sc0JBQVEsYUFBYTtBQUFBLEVBQzFCLFNBQVM7QUFBQSxJQUNQLFFBQVE7QUFBQSxNQUNOLFNBQVMsQ0FBQyxhQUFhLENBQUM7QUFBQSxJQUMxQixDQUFDO0FBQUEsSUFDRCxNQUFNO0FBQUEsSUFDTixPQUFPO0FBQUEsTUFDTCxTQUFTLENBQUMsWUFBWSxXQUFXO0FBQUEsSUFDbkMsQ0FBQztBQUFBLElBQ0QsaUJBQWlCO0FBQUEsTUFDZixRQUFRO0FBQUEsSUFDVixDQUFDO0FBQUEsRUFDSDtBQUFBLEVBRUEsTUFBTTtBQUFBLEVBQ04sT0FBTztBQUFBLElBQ0wsUUFBUTtBQUFBLEVBQ1Y7QUFDRixDQUFDOyIsCiAgIm5hbWVzIjogW10KfQo=

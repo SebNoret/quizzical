@@ -1,6 +1,8 @@
+const apiUrl = "https://opentdb.com/api.php?amount=15";
+
 async function fetchData() {
   try {
-    const response = await fetch("https://opentdb.com/api.php?amount=15");
+    const response = await fetch(apiUrl);
     const data = await response.json();
     if (response.ok) {
       return data;

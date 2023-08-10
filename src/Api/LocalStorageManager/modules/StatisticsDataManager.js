@@ -5,7 +5,7 @@ class StatisticsDataManager {
     score.totalAnswers = Number(score.totalAnswers) + totalAnswers;
     score.correctAnswers = (Number(score.correctAnswers) || 0) + correctAnswers;
     score.totalGamePlayed = score.totalGamePlayed + 1;
-    setData(undefined, score);
+    setData(score, undefined);
   }
 
   static saveUserStats(totalAnswers, correctAnswers) {
@@ -16,20 +16,17 @@ class StatisticsDataManager {
       correctAnswers: correctAnswers,
       totalGamePlayed: 1,
     };
-    setData(undefined, data);
+    setData(data, undefined);
     return true;
   }
 
   static userStatsExists() {
     const userData = getData();
     if (!userData) return false;
-    if (
+    return (
       userData.hasOwnProperty("totalAnswers") &&
       userData.hasOwnProperty("correctAnswers")
-    ) {
-      return true;
-    }
-    return false;
+    );
   }
 }
 

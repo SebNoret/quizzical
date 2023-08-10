@@ -10,7 +10,6 @@ const dev = "http://localhost:5173/";
 const prod = "https://sebnoret.github.io/portfolio/quizz/demo/";
 const localProd = "http://localhost:1313/quizz/demo/";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     postcss({
@@ -25,7 +24,7 @@ export default defineConfig({
     }),
   ],
 
-  base: dev,
+  base: prod,
   build: {
     minify: "esbuild",
   },
