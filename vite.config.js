@@ -24,7 +24,7 @@ export default defineConfig({
     }),
   ],
 
-base: dev,
+  base: prod,
   build: {
     minify: "esbuild",
   },
