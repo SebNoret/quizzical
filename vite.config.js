@@ -1,13 +1,13 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
 import legacy from "@vitejs/plugin-legacy";
-import postcss from "postcss";
+import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
+import postcss from "postcss";
+import { defineConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
 
 const test = "http://localhost:80/dist/";
 const dev = "http://localhost:5173/";
-const prod = "https://sebnoret-portfolio.netlify.app/quizz/demo/";
+const prod = "https://snt-portfolio.netlify.app/quizz/demo/";
 const localProd = "http://localhost:1313/quizz/demo/";
 
 export default defineConfig({
